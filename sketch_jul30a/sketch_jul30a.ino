@@ -51,7 +51,7 @@ Serial.println("Waiting for connection");
 }
 if(WiFi.status()== WL_CONNECTED){   //Check WiFi connection status
 HTTPClient http;    //Declare object of class HTTPClient
-http.begin("http://arduino.zhmail.ru/ar.php");      //Specify request destination
+http.begin("http://api.zhmail.ru/bots/security/arduino.php");      //Specify request destination
 http.addHeader("Content-Type", "application/x-www-form-urlencoded");  //Specify content-type header
 int httpCode = http.POST("token="token);   //Send the request
 String payload = http.getString();                  //Get the response payload

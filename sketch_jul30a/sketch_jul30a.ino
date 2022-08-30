@@ -26,18 +26,24 @@ Serial.begin(115200);
 }
 
 bool st = false;
+bool oldst = false;
 
 void loop() {
-if(digitalRead(D6) == level){
-  st = true;
-}
-
-if(st == true){
-send();
-delay(5000);
-st = false;
-}
-
+  if(digitalRead(D6) == level){
+    delay(50);
+    if(digitalRead(D6) == level){
+      oldst = st;
+      st = true;
+    } else{
+      st = false;
+    }
+  } else{
+    st = false;
+  }
+  if(st && !oldst){
+    send();
+    delay(300);
+  }
 }
 
 void send(){
